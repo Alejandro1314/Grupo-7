@@ -1,0 +1,168 @@
+---
+title: Análisis comparativo de los dos géneros musicales más populares con los géneros
+  musicales menos populares de la plataforma digital de música Spotify
+author: "Gonzales Saul,Vegaz Alejandro,Velasquez Angel"
+date: "2025-03-02"
+output: word_document
+---
+
+
+```{r setup, include=FALSE}
+##Chunck_de_libreria 
+library(tidyverse)
+library(knitr)
+library(dplyr)
+library(readr)
+library(tinytex)
+library(latexpdf)
+knitr::opts_chunk$set(echo = TRUE)
+```
+**Formulación del problema**
+¿Cuáles son las principales características que tienen los dos géneros musicales más populares y los dos géneros musicales menos populares de la plataforma digital de música Spotify?
+
+**objetivo general**
+Analizar las principales características que tienen los dos géneros musicales más populares y los dos géneros musicales menos populares de la plataforma digital de música Spotify
+
+**Justificación**
+La plataforma de Spotify es una de las aplicaciones de reproducción de contenido multimedia más importante de la actualidad, siendo su principal producto la música, con millones de usuarios en el mundo reproduciendo todo el catálogo de canciones que Spotify ofrece, siendo este catálogo muy variado en artistas y géneros musicales, pero como todo negocio que ofrece distintos productos siempre existirán los más vendidos, en este caso son las canciones más populares, las más escuchadas y relevantes para los oyentes de la plataforma, y no solo canciones sino también conjuntos de canciones o géneros musicales que atraen más oyentes dentro de la plataforma, y también están todo lo contrario a lo antes nombrados aquellos géneros musicales con popularidad baja, son géneros consumidos por muy pocas personas, como parte de la industria musical es muy importante popularidad de sus canciones para generar ingresos y analizando las características de los géneros musicales más populares puede ayudar a artistas, productores y sellos discográficos a tomar decisiones informadas sobre qué estilos explorar o promover para tener éxito, también se puede replicar ciertas características de los géneros más populares para que otros géneros pueden obtener también esa relevancia en la música.
+
+La investigación ofrece una oportunidad para aplicar técnicas de análisis de datos, para identificar patrones y describir las características de los géneros musicales, además de comparar dichas características. Esto puede incluir aspectos o variables como tempo, tonalidad, letras y popularidad.
+
+**alcances y limitaciones**
+
+***alcances***
+
+1.acceso a softwere de manejo de datos
+
+2.acceso a una base de datos de Spotify 
+
+3.la base de datos almacena gran variedad de géneros musicales 
+
+4.la base de datos solo tiene canciones
+
+
+***limitaciones***
+
+1.la base de datos solo esta actualizada hasta 
+
+2.cada género musical solo tiene mil canciones 
+
+3.
+
+**Marco Teórico**
+
+***Fundamentos Teóricos***
+Música
+ La música es una forma de expresión artística que consiste en la combinación de sonidos vocales o instrumentales, conforme a estándares culturales de ritmo y melodía.
+La música es una de las más antiguas formas de arte y ha estado presente, de diferentes maneras, en prácticamente todas las culturas humanas. Se puede crear con fines estéticos, recreativos, ceremoniales, terapéuticos o de comunicación.
+
+La música se asocia con ciertos aspectos de la mente y se considera un estímulo importante para el pensamiento lógico y matemático, la adquisición del lenguaje, el desarrollo psicomotriz, la creatividad y muchas otras habilidades humanas.
+Organiza el sonido
+
+La música se caracteriza por organizar los sonidos para producir secuencias estéticamente apreciables y significativas. Si bien todos los sonidos podrían ser “musicales”, en cada cultura hay un rango específico de sonidos que son considerados estrictamente música.
+Se propaga a través de ondas
+
+El componente fundamental de la música es el sonido y se transmite a través del aire, el agua y otros medios capaces de transportar ondas. Estos medios pueden ser sólidos, líquidos o gaseosos.
+
+Requiere de un ejecutor y un compositor
+La música necesita de un intérprete o ejecutor, que emplea un instrumento musical o su propia voz para producir los sonidos. Suele requerir también de un compositor, que es quien concibe la pieza musical que será interpretada. Ambos pueden ser la misma persona.
+Se compone de cuatro parámetros fundamentales
+
+Altura. Es la frecuencia de vibración del sonido. Dependiendo de cuántas veces por segundo vibre, el sonido será más grave (bajo), o agudo (alto).
+
+Duración. Es el tiempo en que permanece audible el sonido.
+
+Intensidad. La intensidad es la fuerza con la que se produce un sonido, o la cantidad de energía acústica que contiene. Se mide en dB (decibeles) y tiene relación con el volumen o la presión sonora que perciben nuestros oídos.
+
+Timbre. Es la cualidad del sonido determinada por la forma de las ondas que lo componen. Es lo que permite distinguir un sonido de otro, aunque tenga la misma altura, duración e intensidad.
+Elementos de la música
+
+Los elementos fundamentales de la música pueden variar de una cultura a otra. En la música occidental son melodía, ritmo y armonía.
+Melodía
+
+La melodía es el conjunto de sonidos que se ordena de forma sucesiva y que se percibe como una unidad completa de sonido, con identidad y significado propio. Cuando suenan dos o más melodías simultáneas, se habla de contrapunto.
+
+El ritmo es la organización del tiempo en la música a través de la sucesión de sonidos y silencios. Es lo que otorga estructura a una pieza musical. Sus elementos principales son pulso, tempo acento y compás.
+
+La armonía es la combinación simultánea de notas diferentes. Puede ser consonante (si se considera “grata” al oído) o disonante (si suena tensa o áspera). La armonía es el pilar de la música occidental y uno de sus elementos fundamentales son los acordes: conjuntos de tres o 
+Géneros musicales
+
+Los géneros musicales son clasificaciones que distinguen las diversas expresiones según el uso de sus instrumentos, sus tendencias estéticas o su contenido histórico.
+Existe una enorme diversidad de géneros musicales. Entre los más comunes actualmente están el pop, el blues, el rap, el rock y la música electrónica.
+
+Spotify
+
+Spotify es un servicio de música, pódcasts y vídeos digitales que te da acceso a millones de canciones y a otro contenido de creadores de todo el mundo.
+
+La plataforma es muy popular porque combina un extenso catálogo musical con recomendaciones personalizadas basadas en tus gustos. Además, puedes usarlo de manera gratuita con anuncios o pagar una suscripción para disfrutar de beneficios como la música sin interrupciones y la posibilidad de escuchar sin conexión.
+
+Las características de audio en las canciones de Spotify
+
+son valores numéricos que describen las características de una canción. Estas características se calculan utilizando algoritmos de análisis de audio. 
+
+popularidad
+
+La popularidad de una pista es un valor entre 0 y 100, siendo 100 el más popular. La popularidad se calcula mediante un algoritmo y se basa, en su mayor parte, en la cantidad total de reproducciones que ha tenido la pista y en lo recientes que son esas reproducciones.
+
+duración
+
+La duración de la pista en milisegundos.
+
+bailabilidad
+
+La bailabilidad describe qué tan adecuada es una pista para bailar en función de una combinación de elementos musicales, como el tempo, la estabilidad del ritmo, la fuerza del compás y la regularidad general. Un valor de 0,0 es el menos bailable y 1,0 el más bailable.
+
+energía
+
+La energía es una medida que va de 0,0 a 1,0 y representa una medida perceptual de intensidad y actividad. Normalmente, las pistas energéticas se sienten rápidas, fuertes y ruidosas. Las características perceptuales que contribuyen a este atributo incluyen el rango dinámico, la sonoridad percibida, el timbre, la velocidad de inicio y la entropía general.
+
+llave
+
+La tonalidad en la que se encuentra la pista. Los números enteros se asignan a tonos utilizando la notación de clase de tono estándar. Por ejemplo, 0 = C, 1 = C♯/D♭, 2 = D, y así sucesivamente. Si no se detectó ninguna tonalidad, el valor es -1. El rango es desde -1 hasta 11
+
+volumen
+
+Volumen general de una pista en decibeles (dB). Los valores de volumen se promedian en toda la pista y son útiles para comparar el volumen relativo de las pistas. El volumen es la calidad de un sonido que es el principal correlato psicológico de la fuerza física (amplitud). Los valores suelen oscilar entre -60 y 0 db.
+
+modo
+
+El modo indica la modalidad (mayor o menor) de una pista, el tipo de escala de la que se deriva su contenido melódico. Mayor se representa con 1 y menor con 0.
+
+Locuacidad
+
+Detecta la presencia de palabras habladas en una pista. Cuanto más parecida a una voz sea la grabación (por ejemplo, un programa de entrevistas, un audiolibro, una poesía), más cercano a 1,0 será el valor del atributo. Los valores superiores a 0,66 describen pistas que probablemente estén compuestas completamente de palabras habladas. Los valores entre 0,33 y 0,66 describen pistas que pueden contener tanto música como voz, ya sea en secciones o en capas, incluidos casos como la música rap. Los valores inferiores a 0,33 probablemente representan música y otras pistas que no son similares a una voz.
+
+acústica
+
+Una medida de confianza de 0,0 a 1,0 de si la pista es acústica. 1,0 representa una confianza alta de que la pista es acústica.
+
+instrumentalidad
+
+Predice si una pista no contiene voces. Los sonidos "ooh" y "aah" se consideran instrumentales en este contexto. Las pistas de rap o de palabra hablada son claramente "vocales". Cuanto más cercano esté el valor de instrumentalidad a 1,0, mayor será la probabilidad de que la pista no contenga contenido vocal. Los valores superiores a 0,5 están destinados a representar pistas instrumentales, pero la confianza es mayor a medida que el valor se acerca a 1,0.
+
+liveness
+
+Detecta la presencia de público en la grabación. Los valores de liveness más altos representan una mayor probabilidad de que la pista se haya interpretado en vivo. Un valor superior a 0,8 indica una gran probabilidad de que la pista se haya interpretado en vivo.
+
+valencia
+
+Medida de 0,0 a 1,0 que describe la positividad musical que transmite una pista. Las pistas con una valencia alta suenan más positivas (por ejemplo, alegres, alegres, eufóricas), mientras que las pistas con una valencia baja suenan más negativas (por ejemplo, tristes, deprimidas, enojadas).
+
+tempo
+
+El tempo general estimado de una pista en pulsaciones por minuto (PPM). En terminología musical, el tempo es la velocidad o el ritmo de una pieza determinada y se deriva directamente de la duración media de las pulsaciones.
+
+firma de tiempo
+
+Un compás estimado. El compás (metro) es una convención de notación que especifica cuántos pulsos hay en cada compás (o medida). El compás varía de 3 a 7, lo que indica compases de "3/4" a "7/4".
+
+Algoritmo de Spotify
+
+Los algoritmos de recomendación pretenden sugerir a los usuarios canciones que puedan disfrutar. Estas recomendaciones se establecen a partir de un análisis de su historial de escucha, sus hábitos en la plataforma y los comportamientos de usuarios similares. Las sugerencias se basan en el rendimiento de las canciones, en particular las que tienen un bajo índice de omisiones o una elevada duración de escucha o una duración de escucha elevada.
+
+La puntuación de popularidad
+
+El algoritmo de Spotify analiza el índice de popularidad. Se trata de una puntuación de 0 a 100 que mide la popularidad de un artista en relación a otros de la plataforma. Cuanto más alta sea, más será recomendado por listas el artista. Cada canción tiene también su propia puntuación que influye en su popularidad. El estudio concluye que el principal reto reside en la capacidad de generar un gran volumen de oyentes y streams en un plazo determinado.
+El número de reproducciones en los últimos 28 días. Representa aproximadamente el 80% de la influencia de la recomendación
+
+**Variables**
