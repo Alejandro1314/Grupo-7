@@ -1,7 +1,7 @@
 ---
 title: Análisis comparativo de los dos géneros musicales más populares con los géneros
   musicales menos populares de la plataforma digital de música Spotify
-author: "Gonzales Saul,Vegaz Alejandro,Velasquez Angel"
+author: "Gonzales Saul,Vegas Alejandro,Velásquez Ángel"
 date: "2025-03-02"
 output:
   pdf_document:
@@ -209,9 +209,9 @@ popularidad_genero <- spotify %>%
 
 ```{r maX_min_popularidad, include=FALSE}
 
-mas_populares <- popularidad_genero %>%slice(1:2) %>%summarise(Genero=track_genre,Promedio_popularidad=media_popularidad)
+mas_populares <- popularidad_genero %>%slice(1:2) %>%summarise(Genero=track_genre,"Promedio de popularidad"=media_popularidad)
 
-menos_populares <-slice(popularidad_genero,113:114)%>%summarise(Genero=track_genre,Promedio_popularidad=media_popularidad)
+menos_populares <-slice(popularidad_genero,113:114)%>%summarise(Genero=track_genre,"Promedio de popularidad"=media_popularidad)
 ```
 
 
@@ -220,8 +220,10 @@ menos_populares <-slice(popularidad_genero,113:114)%>%summarise(Genero=track_gen
 kable(mas_populares, caption = "Géneros más populares")
 kable(menos_populares, caption = "Géneros menos populares")
 ```
+
+
 ```{r df_generos,include=FALSE}
-#en este apartado estan los df que usaremos para el trabajo
+#en este apartado estan los data frame que usaremos para el trabajo
 most_popular <- spotify[spotify$track_genre == "pop-film" | spotify$track_genre == "k-pop",]
 
 popularidad_baja <- spotify[spotify$track_genre == "iranian" | spotify$track_genre == "romance",]
@@ -260,9 +262,9 @@ cat("coeficiente de correlación de la popularidad con el volumen (géneros más
 
 cat("coeficiente de correlación de la popularidad con el volumen (géneros menos populares):", round(poop_loud, 3))
 
-cat("coeficiente de correlación de la popularidad con la energía (géneros más populares:", round(pop_energy, 3))
+cat("coeficiente de correlación de la popularidad con la energía (géneros más populares):", round(pop_energy, 3))
 
-cat("coeficiente de correlación de la popularidad con la energía (géneros menos populares:", round(poop_energy, 3))
+cat("coeficiente de correlación de la popularidad con la energía (géneros menos populares):", round(poop_energy, 3))
 ```
 
 
