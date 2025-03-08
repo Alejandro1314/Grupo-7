@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r LECTURA_CSV, include=FALSE}
-spotify <- read_csv("C:/users/pc/Downloads/Spotify G4-G7.csv")
+spotify <- read_csv("C:/Users/vegas/Desktop/Spotify G4-G7.csv")
 
 str(spotify)
 ```
@@ -36,7 +36,15 @@ Analizar las principales características que tienen los dos géneros musicales 
 
 **Planteamineto del problema**
 
+En esta era digital, las plataformas de transmisión de música como Spotify han revolucionado la forma en que consumimos y descubrimos la música. Con millones de usuarios activos y un amplio catálogo de canciones, Spotify se ha convertido en un factor clave para la industria musical. Sin embargo, no todos los géneros musicales tienen la misma popularidad en la plataforma.
 
+Mientras que algunos géneros atraen a una gran audiencia y generan un volumen significativo de reproducciones, otros géneros son escuchados por un público mucho más reducido.
+
+Esta discrepancia en la popularidad de los géneros musicales plantea una serie de preguntas importantes para artistas, productores y sellos discográficos: ¿Qué características distintivas poseen los géneros musicales más populares en comparación con los menos populares en Spotify? ¿Existen patrones o tendencias que puedan ser identificados y replicados para aumentar la popularidad de géneros menos conocidos? ¿Qué factores específicos influyen en la popularidad de un género musical en la plataforma?
+
+El problema radica en la necesidad de comprender las características que distinguen a los géneros musicales más populares de los menos populares en Spotify. Esta comprensión es esencial no solo para la plataforma y sus usuarios, sino también para la industria musical que busca optimizar sus estrategias de producción y promoción. Al analizar y comparar las características de los géneros más y menos populares, se puede obtener información valiosa que permite replicar el éxito de los géneros populares en otros menos conocidos, fomentando así una mayor diversidad y equidad en el consumo musical.
+
+Por lo tanto, el planteamiento del problema se centra en la identificación y análisis de las principales características que tienen los dos géneros musicales más populares y los dos géneros musicales menos populares de la plataforma digital de música Spotify. Este análisis permitirá no solo describir las diferencias y similitudes entre estos géneros, sino también ofrecer recomendaciones prácticas para la industria musical basadas en datos concretos y objetivos.
 
 **Justificación**
 
