@@ -1,0 +1,147 @@
+---
+title: Análisis comparativo de los dos géneros musicales más populares con los géneros
+  musicales menos populares de la plataforma digital de música Spotify
+author: "Gonzales Saul,Vegas Alejandro,Velásquez Ángel"
+date: "2025-03-02"
+output:
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+#Librerias
+library(tidyverse)
+library(knitr)
+library(dplyr)
+library(readr)
+library(latexpdf)
+library(funModeling)
+library(gridExtra)
+library(corrplot)
+library(RColorBrewer)
+library(tseries)
+library(ggplot2)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r LECTURA_CSV, include=FALSE}
+spotify <- read_csv("Spotify G4-G7.csv")
+str(spotify)
+```
+
+
+
+```{r seleccion_generos_populares, include=FALSE}
+popularidad_genero <- spotify %>%
+  group_by(track_genre) %>%
+  summarise(media_popularidad = mean(popularity, na.rm = TRUE)) %>%
+  arrange(desc(media_popularidad))
+```
+
+```{r maX_min_popularidad, include=FALSE}
+
+mas_populares <- popularidad_genero %>%slice(1:2) %>%summarise(Genero=track_genre,"Promedio de popularidad"=media_popularidad)
+
+menos_populares <-slice(popularidad_genero,113:114)%>%summarise(Genero=track_genre,"Promedio de popularidad"=media_popularidad)
+```
+
+
+```{r mostrar_tablas, echo=FALSE}
+
+kable(mas_populares, caption = "Géneros más populares")
+kable(menos_populares, caption = "Géneros menos populares")
+```
+
+
+```{r df_generos,include=FALSE}
+#en este apartado estan los data frame que usaremos para el trabajo
+most_popular <- spotify[spotify$track_genre == "pop-film" | spotify$track_genre == "k-pop",]
+
+popularidad_baja <- spotify[spotify$track_genre == "iranian" | spotify$track_genre == "romance",]
+
+```
+
+```{r correlacionado_max_popularidad,include=FALSE}
+pop_dura <- cor(most_popular$popularity, most_popular$duration_ms)
+pop_dance <- cor(most_popular$popularity, most_popular$danceability)
+pop_energy <- cor(most_popular$popularity, most_popular$energy)
+pop_key <- cor(most_popular$popularity, most_popular$key)
+pop_loud <- cor(most_popular$popularity, most_popular$loudness)
+pop_instru <- cor(most_popular$popularity, most_popular$instrumentalness)
+pop_live <- cor(most_popular$popularity, most_popular$liveness)
+pop_valence <- cor(most_popular$popularity, most_popular$valence)
+pop_tempo <- cor(most_popular$popularity, most_popular$tempo)
+pop_time_signature <- cor(most_popular$popularity, most_popular$time_signature)
+                
+```
+```{r correlacion_min_popularidad,include=FALSE}
+poop_dura <- cor(popularidad_baja$popularity, popularidad_baja$duration_ms)
+poop_dance <- cor(popularidad_baja$popularity, popularidad_baja$danceability)
+poop_energy <- cor(popularidad_baja$popularity, popularidad_baja$energy)
+poop_key <- cor(popularidad_baja$popularity, popularidad_baja$key)
+poop_loud <- cor(popularidad_baja$popularity, popularidad_baja$loudness)
+poop_instru <- cor(popularidad_baja$popularity, popularidad_baja$instrumentalness)
+poop_live <- cor(popularidad_baja$popularity, popularidad_baja$liveness)
+poop_valence <- cor(popularidad_baja$popularity, popularidad_baja$valence)
+poop_tempo <- cor(popularidad_baja$popularity, popularidad_baja$tempo)
+poop_time_signature <- cor(popularidad_baja$popularity, popularidad_baja$time_signature)
+```
+Para la selección de las variables se aplicó la relación lineal de la popularidad con cada una de las otras variables y los resultados más resaltantes se seleccionaron para estudiarse como variables del proyecto
+
+```{r ,echo=FALSE}
+cat("coeficiente de correlación de la popularidad con el volumen (géneros más populares):", round(pop_loud, 3))
+
+cat("coeficiente de correlación de la popularidad con el volumen (géneros menos populares):", round(poop_loud, 3))
+
+cat("coeficiente de correlación de la popularidad con la energía (géneros más populares):", round(pop_energy, 3))
+
+cat("coeficiente de correlación de la popularidad con la energía (géneros menos populares):", round(poop_energy, 3))
+```
+
+```{r estadisticas descriptivas genros mas populares, include=FALSE}
+
+descripcion_mas <- profiling_num(most_popular)
+descripcion_mas <- descripcion_mas %>% select(variable, mean, std_dev,skewness, kurtosis)
+descripcion_mas <- descripcion_mas %>% rename(Variable = variable, Promedio = mean,D.Estandar = std_dev, "Coeficiente de asimetria" = skewness,Kurtosis = kurtosis,)
+descripcion_mas <- descripcion_mas[c(2,6,8),]
+rownames(descripcion_mas) <- c("1", "2", "3")
+
+descripcion_menos <- profiling_num(popularidad_baja)
+descripcion_menos <- descripcion_menos %>% select(variable, mean, std_dev,skewness, kurtosis)
+descripcion_menos <- descripcion_menos %>% rename(Variable = variable, Promedio = mean,D.Estandar = std_dev, "Coeficiente de asimetria" = skewness,Kurtosis = kurtosis,)
+descripcion_menos <- descripcion_menos[c(2,6,8),]
+rownames(descripcion_menos) <- c("1", "2", "3")
+
+
+```
+**Análisi descriptivo**
+
+
+```{r tabla estadisticas descriptivas generos mas populares, echo=FALSE}
+kable(descripcion_mas, caption = "Estadisticas descriptivas de los géneros musicales más populares")
+```
+
+
+```{r tabla estadisticas descriptivas generos menos populares, echo=FALSE}
+kable(descripcion_menos, caption = "Estadisticas descriptivas de los géneros musicales menos populares")
+```
+
+
+```{r grafico_popularidad, echo=FALSE}
+# Unir las tablas de géneros más y menos populares
+generos_seleccionados <- bind_rows(
+  mas_populares %>% mutate(Tipo = "Más Populares"),
+  menos_populares %>% mutate(Tipo = "Menos Populares")
+)
+
+# Graficar la popularidad de los géneros musicales seleccionados
+ggplot(generos_seleccionados, aes(x = Genero, y = `Promedio de popularidad`, fill = Tipo)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Popularidad de los Géneros Musicales en Spotify",
+       x = "Género Musical",
+       y = "Promedio de Popularidad") +
+  theme_minimal()
+```
+
+
+
