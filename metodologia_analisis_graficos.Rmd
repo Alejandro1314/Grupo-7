@@ -6,6 +6,7 @@ date: "2025-03-02"
 output:
   pdf_document: 
     latex_engine: xelatex
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -144,4 +145,29 @@ ggplot(generos_seleccionados, aes(x = Genero, y = `Promedio de popularidad`, fil
 ```
 
 
+```{r grafico_sectores, echo=FALSE}
+generos_seleccionados <- bind_rows(
+  most_popular %>% mutate(Tipo = "Más Popular"),
+  popularidad_baja %>% mutate(Tipo = "Menos Popular")
+)
+
+data_explicit_selected <- generos_seleccionados %>%
+  group_by(Tipo, explicit) %>%
+  summarise(count = n(), .groups = "drop") %>%
+  mutate(percentage = count / sum(count) * 100)
+
+ggplot(data_explicit_selected, aes(x = "", y = percentage, fill = as.factor(explicit))) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y") +
+  facet_wrap(~ Tipo) +
+  labs(title = "¿qué tan explícitas son?",
+       fill = "Explícito",
+       y = "Porcentaje") +
+  theme_minimal() +
+  scale_fill_manual(values = c("#0002F0", "#ED0562"), labels = c("No Explícita", "Explícita")) +
+  theme(axis.text.x = element_blank(),
+        plot.title = element_text(hjust = 0.5)) +
+  geom_text(aes(label = paste0(round(percentage, 1), "%")), 
+            position = position_stack(vjust = 0.5), color = "white")
+```
 
