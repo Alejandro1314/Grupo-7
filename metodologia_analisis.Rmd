@@ -17,24 +17,28 @@ library(knitr)
 library(dplyr)
 library(readr)
 library(latexpdf)
+library(funModeling)
+library(gridExtra)
+library(corrplot)
+library(RColorBrewer)
+library(tseries)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r LECTURA_CSV, include=FALSE}
-spotify <- read_csv("C:/Users/vegas/Desktop/Spotify G4-G7.csv")
-
+spotify <- read_csv("C:/users/pc/Downloads/Spotify G4-G7.csv")
 str(spotify)
 ```
 
-**Formulación del problema**
+# Formulación del problema
 
 ¿Cuáles son las principales características que tienen los dos géneros musicales más populares y los dos géneros musicales menos populares de la plataforma digital de música Spotify?
 
-**objetivo general**
+# objetivo general
 
 Analizar las principales características que tienen los dos géneros musicales más populares y los dos géneros musicales menos populares de la plataforma digital de música Spotify
 
-**Planteamineto del problema**
+# Planteamineto del problema
 
 En esta era digital, las plataformas de transmisión de música como Spotify han revolucionado la forma en que consumimos y descubrimos la música. Con millones de usuarios activos y un amplio catálogo de canciones, Spotify se ha convertido en un factor clave para la industria musical. Sin embargo, no todos los géneros musicales tienen la misma popularidad en la plataforma.
 
@@ -46,13 +50,13 @@ El problema radica en la necesidad de comprender las características que distin
 
 Por lo tanto, el planteamiento del problema se centra en la identificación y análisis de las principales características que tienen los dos géneros musicales más populares y los dos géneros musicales menos populares de la plataforma digital de música Spotify. Este análisis permitirá no solo describir las diferencias y similitudes entre estos géneros, sino también ofrecer recomendaciones prácticas para la industria musical basadas en datos concretos y objetivos.
 
-**Justificación**
+# Justificación
 
 La plataforma de Spotify es una de las aplicaciones de reproducción de contenido multimedia más importante de la actualidad, siendo su principal producto la música, con millones de usuarios en el mundo reproduciendo todo el catálogo de canciones que Spotify ofrece, siendo este catálogo muy variado en artistas y géneros musicales, pero como todo negocio que ofrece distintos productos siempre existirán los más vendidos, en este caso son las canciones más populares, las más escuchadas y relevantes para los oyentes de la plataforma, y no solo canciones sino también conjuntos de canciones o géneros musicales que atraen más oyentes dentro de la plataforma, y también están todo lo contrario a lo antes nombrados aquellos géneros musicales con popularidad baja, son géneros consumidos por muy pocas personas, como parte de la industria musical es muy importante popularidad de sus canciones para generar ingresos y analizando las características de los géneros musicales más populares puede ayudar a artistas, productores y sellos discográficos a tomar decisiones informadas sobre qué estilos explorar o promover para tener éxito, también se puede replicar ciertas características de los géneros más populares para que otros géneros pueden obtener también esa relevancia en la música.
 
 La investigación ofrece una oportunidad para aplicar técnicas de análisis de datos, para identificar patrones y describir las características de los géneros musicales, además de comparar dichas características. Esto puede incluir aspectos o variables como tempo, tonalidad, letras y popularidad.
 
-**alcances y limitaciones**
+## alcances y limitaciones
 
 ***alcances***
 
@@ -73,7 +77,7 @@ La investigación ofrece una oportunidad para aplicar técnicas de análisis de 
 
 3.
 
-**Marco Teórico**
+# Marco Teórico
 
 ***Fundamentos Teóricos***
 
@@ -204,7 +208,7 @@ Energía: Sensación de intensidad y dinamismo en una pieza musical. Los género
 Explicitud: Grado en que las letras de las canciones contienen lenguaje, temas o imágenes explícitas que pueden no ser apropiadas para todas las audiencias.
 
 
-*Análisis Exploratorio de los datos*
+# Análisis Exploratorio de los datos
 
 En primera instancia se tiene que determinar cuales son los dos géneros mas populares y menos populares de la plataforma, obteniendo la media de popularidad de cada género y seleccionando los das más altas y las dos más bajas para tener definidos los géneros con los que se trabajará
 
@@ -275,4 +279,30 @@ cat("coeficiente de correlación de la popularidad con la energía (géneros má
 cat("coeficiente de correlación de la popularidad con la energía (géneros menos populares):", round(poop_energy, 3))
 ```
 
+```{r estadisticas descriptivas genros mas populares, include=FALSE}
 
+descripcion_mas <- profiling_num(most_popular)
+descripcion_mas <- descripcion_mas %>% select(variable, mean, std_dev,skewness, kurtosis)
+descripcion_mas <- descripcion_mas %>% rename(Variable = variable, Promedio = mean,D.Estandar = std_dev, "Coeficiente de asimetria" = skewness,Kurtosis = kurtosis,)
+descripcion_mas <- descripcion_mas[c(2,6,8),]
+rownames(descripcion_mas) <- c("1", "2", "3")
+
+descripcion_menos <- profiling_num(popularidad_baja)
+descripcion_menos <- descripcion_menos %>% select(variable, mean, std_dev,skewness, kurtosis)
+descripcion_menos <- descripcion_menos %>% rename(Variable = variable, Promedio = mean,D.Estandar = std_dev, "Coeficiente de asimetria" = skewness,Kurtosis = kurtosis,)
+descripcion_menos <- descripcion_menos[c(2,6,8),]
+rownames(descripcion_menos) <- c("1", "2", "3")
+
+
+```
+**Análisi descriptivo**
+
+
+```{r tabla estadisticas descriptivas generos mas populares, echo=FALSE}
+kable(descripcion_mas, caption = "Estadisticas descriptivas de los géneros musicales más populares")
+```
+
+
+```{r tabla estadisticas descriptivas generos menos populares, echo=FALSE}
+kable(descripcion_menos, caption = "Estadisticas descriptivas de los géneros musicales menos populares")
+```
