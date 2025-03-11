@@ -4,8 +4,8 @@ title: Análisis comparativo de los dos géneros musicales más populares con lo
 author: "Gonzales Saul,Vegas Alejandro,Velásquez Ángel"
 date: "2025-03-02"
 output:
-  pdf_document: 
-    latex_engine: xelatex
+  pdf_document: null
+  latex_engine: xelatex
   word_document: default
 ---
 
@@ -169,5 +169,26 @@ ggplot(data_explicit_selected, aes(x = "", y = percentage, fill = as.factor(expl
         plot.title = element_text(hjust = 0.5)) +
   geom_text(aes(label = paste0(round(percentage, 1), "%")), 
             position = position_stack(vjust = 0.5), color = "white")
+```
+
+```{r graficos_dispercion_most_popular, echo=FALSE}
+ggplot(most_popular, aes(x=energy, y=loudness, color=popularity)) +
+  geom_point() +
+  labs(title = "Dispersión de los más populares",
+       x = "Energia",
+       y = "Volumen") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+
+```{r graficos_dispercion_popularidad_baja, echo=FALSE}
+ggplot(popularidad_baja, aes(x=energy, y=loudness, color=popularity)) +
+  geom_point() +
+  labs(title = "Dispersión de los menos populares",
+       x = "Energia",
+       y = "Volumen") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
 ```
 
