@@ -160,15 +160,22 @@ ggplot(data_explicit_selected, aes(x = "", y = percentage, fill = as.factor(expl
   geom_bar(stat = "identity", width = 1) +
   coord_polar("y") +
   facet_wrap(~ Tipo) +
-  labs(title = "¿qué tan explícitas son?",
+  labs(title = "¿Qué tan explícitas son?",
        fill = "Explícito",
-       y = "Porcentaje") +
+       y = "",
+       x = "") +
   theme_minimal() +
-  scale_fill_manual(values = c("#0002F0", "#ED0562"), labels = c("No Explícita", "Explícita")) +
-  theme(axis.text.x = element_blank(),
-        plot.title = element_text(hjust = 0.5)) +
+  scale_fill_manual(values = c("#6DB1F7", "#6DF7B6"), labels = c("No Explícita", "Explícita")) +
+  theme(
+    axis.text.x = element_blank(),
+    plot.title = element_text(hjust = 0.5),
+    panel.border = element_blank(),
+    panel.grid = element_blank(),
+    panel.background = element_blank(),
+    plot.background = element_blank()
+  ) +
   geom_text(aes(label = paste0(round(percentage, 1), "%")), 
-            position = position_stack(vjust = 0.5), color = "white")
+            position = position_stack(vjust = 0.5))
 ```
 
 ```{r graficos_dispercion_most_popular, echo=FALSE}
