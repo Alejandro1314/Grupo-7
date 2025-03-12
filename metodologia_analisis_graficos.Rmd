@@ -145,7 +145,7 @@ ggplot(generos_seleccionados, aes(x = Genero, y = `Promedio de popularidad`, fil
 ```
 
 
-```{r grafico_sectores, echo=FALSE}
+```{r grafico sectores, echo=FALSE}
 generos_seleccionados <- bind_rows(
   most_popular %>% mutate(Tipo = "Más Popular"),
   popularidad_baja %>% mutate(Tipo = "Menos Popular")
@@ -178,23 +178,72 @@ ggplot(data_explicit_selected, aes(x = "", y = percentage, fill = as.factor(expl
             position = position_stack(vjust = 0.5))
 ```
 
-```{r graficos_dispercion_most_popular, echo=FALSE}
+```{r graficos dispercion mas populares, echo=FALSE}
 ggplot(most_popular, aes(x=energy, y=loudness, color=popularity)) +
   geom_point() +
   labs(title = "Dispersión de los más populares",
-       x = "Energia",
-       y = "Volumen") +
+       x = "Energía",
+       y = "Volumen",
+       color = "Popularidad") +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
 
-```{r graficos_dispercion_popularidad_baja, echo=FALSE}
+```{r graficos dispercion menos populares, echo=FALSE}
 ggplot(popularidad_baja, aes(x=energy, y=loudness, color=popularity)) +
   geom_point() +
   labs(title = "Dispersión de los menos populares",
-       x = "Energia",
-       y = "Volumen") +
+       x = "Energía",
+       y = "Volumen",
+       color = "Popularidad") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+
+```{r graficos dispercion de energia, echo=FALSE}
+ggplot(popularidad_baja, aes(x=loudness, y=popularity, color=energy)) +
+  geom_point() +
+  labs(title = "Dispersión de los menos populares",
+       x = "Volumen",
+       y = "Popularidad",
+       color = "Energía") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+
+```{r graficos dispercion de volumen popular, echo=FALSE}
+ggplot(most_popular, aes(x=loudness, y=popularity, color=energy)) +
+  geom_point() +
+  labs(title = "Dispersión de los más populares",
+       x = "Volumen",
+       y = "Popularidad",
+       color = "Energía") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r graficos dispercion de no volumen popular, echo=FALSE}
+ggplot(most_popular, aes(x=energy, y=popularity, color=loudness)) +
+  geom_point() +
+  labs(title = "Dispersión de los más populares",
+       x = "Energía",
+       y = "popularidad",
+       color = "Volumen") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+
+```{r graficos dispercion de volumen no popular, echo=FALSE}
+ggplot(popularidad_baja, aes(x=energy, y=popularity, color=loudness)) +
+  geom_point() +
+  labs(title = "Dispersión de los menos populares",
+       x = "Energía",
+       y = "Popularidad",
+       color = "Volumen") +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5))
 ```
