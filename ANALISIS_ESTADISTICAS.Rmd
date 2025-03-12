@@ -1,0 +1,268 @@
+---
+title: Análisis de los dos géneros musicales más populares y dos los géneros
+  musicales menos populares de la plataforma digital de música Spotify
+author: "Gonzales Saul,Vegas Alejandro,Velásquez Ángel"
+date: "2025-03-02"
+output:
+  pdf_document: null
+  latex_engine: xelatex
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+#Librerias
+library(tidyverse)
+library(knitr)
+library(dplyr)
+library(readr)
+library(latexpdf)
+library(funModeling)
+library(gridExtra)
+library(corrplot)
+library(RColorBrewer)
+library(tseries)
+library(ggplot2)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r LECTURA_CSV, include=FALSE}
+spotify <- read_csv("Spotify G4-G7.csv")
+str(spotify)
+```
+
+# Análisis Exploratorio de los datos
+
+En primera instancia se tiene que determinar cuales son los dos géneros mas populares y menos populares de la plataforma, obteniendo la media de popularidad de cada género y seleccionando los das más altas y las dos más bajas para tener definidos los géneros con los que se trabajará
+
+Los dos géneros musicales con las medias de popularidad más alta son el pop-film y el k-pop, que son géneros que se caracterizan por tener melodías atractivas y memorables, Uso de Instrumentación Variada, Ritmos y Beats Enérgicos
+
+Y en contraparte los dos géneros musicales menos populares son el romance y el iranian, géneros que no guardan mucha relación entre ellos más allá de su bajo promedio de popularidad, por un lado el romance, Las composiciones suelen tener melodías suaves y fluidas que refuerzan el carácter sentimental de las canciones, y la música de origen iraní En la actualidad, muchos artistas iraníes combinan elementos tradicionales con géneros modernos o elementos experimentales  
+
+Además se apoyará visualmente con un grafico de barras 
+
+```{r seleccion_generos_populares, include=FALSE}
+popularidad_genero <- spotify %>%
+  group_by(track_genre) %>%
+  summarise(media_popularidad = mean(popularity, na.rm = TRUE)) %>%
+  arrange(desc(media_popularidad))
+```
+
+```{r maX_min_popularidad, include=FALSE}
+
+mas_populares <- popularidad_genero %>%slice(1:2) %>%summarise(Genero=track_genre,"Promedio de popularidad"=media_popularidad)
+
+menos_populares <-slice(popularidad_genero,113:114)%>%summarise(Genero=track_genre,"Promedio de popularidad"=media_popularidad)
+```
+
+
+```{r mostrar_tablas, echo=FALSE}
+
+kable(mas_populares, caption = "Géneros más populares")
+kable(menos_populares, caption = "Géneros menos populares")
+```
+
+```{r grafico_popularidad, echo=FALSE}
+# Unir las tablas de géneros más y menos populares
+generos_seleccionados <- bind_rows(
+  mas_populares %>% mutate(Tipo = "Más Populares"),
+  menos_populares %>% mutate(Tipo = "Menos Populares")
+)
+
+# Graficar la popularidad de los géneros musicales seleccionados
+ggplot(generos_seleccionados, aes(x = Genero, y = `Promedio de popularidad`, fill = Tipo)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Popularidad de los Géneros Musicales en Spotify",
+       x = "Género Musical",
+       y = "Promedio de Popularidad") +
+  theme_minimal()
+```
+
+```{r df_generos,include=FALSE}
+#en este apartado estan los data frame que usaremos para el trabajo
+most_popular <- spotify[spotify$track_genre == "pop-film" | spotify$track_genre == "k-pop",]
+
+popularidad_baja <- spotify[spotify$track_genre == "iranian" | spotify$track_genre == "romance",]
+
+```
+
+```{r correlacionado_max_popularidad,include=FALSE}
+pop_dura <- cor(most_popular$popularity, most_popular$duration_ms)
+pop_dance <- cor(most_popular$popularity, most_popular$danceability)
+pop_energy <- cor(most_popular$popularity, most_popular$energy)
+pop_key <- cor(most_popular$popularity, most_popular$key)
+pop_loud <- cor(most_popular$popularity, most_popular$loudness)
+pop_instru <- cor(most_popular$popularity, most_popular$instrumentalness)
+pop_live <- cor(most_popular$popularity, most_popular$liveness)
+pop_valence <- cor(most_popular$popularity, most_popular$valence)
+pop_tempo <- cor(most_popular$popularity, most_popular$tempo)
+pop_time_signature <- cor(most_popular$popularity, most_popular$time_signature)
+                
+```
+```{r correlacion_min_popularidad,include=FALSE}
+poop_dura <- cor(popularidad_baja$popularity, popularidad_baja$duration_ms)
+poop_dance <- cor(popularidad_baja$popularity, popularidad_baja$danceability)
+poop_energy <- cor(popularidad_baja$popularity, popularidad_baja$energy)
+poop_key <- cor(popularidad_baja$popularity, popularidad_baja$key)
+poop_loud <- cor(popularidad_baja$popularity, popularidad_baja$loudness)
+poop_instru <- cor(popularidad_baja$popularity, popularidad_baja$instrumentalness)
+poop_live <- cor(popularidad_baja$popularity, popularidad_baja$liveness)
+poop_valence <- cor(popularidad_baja$popularity, popularidad_baja$valence)
+poop_tempo <- cor(popularidad_baja$popularity, popularidad_baja$tempo)
+poop_time_signature <- cor(popularidad_baja$popularity, popularidad_baja$time_signature)
+```
+Para la selección de las variables se aplicó la relación lineal de la popularidad con cada una de las otras variables y los resultados más resaltantes se seleccionaron para estudiarse como variables del proyecto
+
+```{r ,echo=FALSE}
+cat("coeficiente de correlación de la popularidad con el volumen (géneros más populares):", round(pop_loud, 3))
+
+cat("coeficiente de correlación de la popularidad con el volumen (géneros menos populares):", round(poop_loud, 3))
+
+cat("coeficiente de correlación de la popularidad con la energía (géneros más populares):", round(pop_energy, 3))
+
+cat("coeficiente de correlación de la popularidad con la energía (géneros menos populares):", round(poop_energy, 3))
+```
+
+```{r estadisticas descriptivas genros mas populares, include=FALSE}
+
+descripcion_mas <- profiling_num(most_popular)
+descripcion_mas <- descripcion_mas %>% select(variable, mean, std_dev,skewness, kurtosis)
+descripcion_mas <- descripcion_mas %>% rename(Variable = variable, Promedio = mean,D.Estandar = std_dev, "Coeficiente de asimetria" = skewness,Kurtosis = kurtosis,)
+descripcion_mas <- descripcion_mas[c(2,6,8),]
+rownames(descripcion_mas) <- c("1", "2", "3")
+
+descripcion_menos <- profiling_num(popularidad_baja)
+descripcion_menos <- descripcion_menos %>% select(variable, mean, std_dev,skewness, kurtosis)
+descripcion_menos <- descripcion_menos %>% rename(Variable = variable, Promedio = mean,D.Estandar = std_dev, "Coeficiente de asimetria" = skewness,Kurtosis = kurtosis,)
+descripcion_menos <- descripcion_menos[c(2,6,8),]
+rownames(descripcion_menos) <- c("1", "2", "3")
+
+
+```
+**Análisi descriptivo**
+
+En el siguiente cuadro, se muestran las estadísticas descriptivas para las variables en estudio, correspondientes a los géneros musicales más populares de la plataforma de Spotify.
+
+- 
+
+```{r tabla estadisticas descriptivas generos mas populares, echo=FALSE}
+kable(descripcion_mas, caption = "Estadisticas descriptivas de los géneros musicales más populares")
+```
+
+En el siguiente cuadro, se muestran las estadísticas descriptivas para las variables en estudio, correspondientes a los dos géneros musicales menos populares de la plataforma de Spotify.
+
+- 
+
+```{r tabla estadisticas descriptivas generos menos populares, echo=FALSE}
+kable(descripcion_menos, caption = "Estadisticas descriptivas de los géneros musicales menos populares")
+```
+
+El siguiente grafico de sectores
+
+```{r grafico sectores, echo=FALSE}
+generos_seleccionados <- bind_rows(
+  most_popular %>% mutate(Tipo = "Más Popular"),
+  popularidad_baja %>% mutate(Tipo = "Menos Popular")
+)
+
+data_explicit_selected <- generos_seleccionados %>%
+  group_by(Tipo, explicit) %>%
+  summarise(count = n(), .groups = "drop") %>%
+  mutate(percentage = count / sum(count) * 100)
+
+ggplot(data_explicit_selected, aes(x = "", y = percentage, fill = as.factor(explicit))) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y") +
+  facet_wrap(~ Tipo) +
+  labs(title = "¿Qué tan explícitas son?",
+       fill = "Explícito",
+       y = "",
+       x = "") +
+  theme_minimal() +
+  scale_fill_manual(values = c("#6DB1F7", "#6DF7B6"), labels = c("No Explícita", "Explícita")) +
+  theme(
+    axis.text.x = element_blank(),
+    plot.title = element_text(hjust = 0.5),
+    panel.border = element_blank(),
+    panel.grid = element_blank(),
+    panel.background = element_blank(),
+    plot.background = element_blank()
+  ) +
+  geom_text(aes(label = paste0(round(percentage, 1), "%")), 
+            position = position_stack(vjust = 0.5))
+```
+
+#Análisis Bivariante (correlación)
+
+
+```{r graficos dispercion mas populares, echo=FALSE}
+ggplot(most_popular, aes(x=energy, y=loudness, color=popularity)) +
+  geom_point() +
+  labs(title = "Dispersión de los más populares",
+       x = "Energía",
+       y = "Volumen",
+       color = "Popularidad") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+
+```{r graficos dispercion menos populares, echo=FALSE}
+ggplot(popularidad_baja, aes(x=energy, y=loudness, color=popularity)) +
+  geom_point() +
+  labs(title = "Dispersión de los menos populares",
+       x = "Energía",
+       y = "Volumen",
+       color = "Popularidad") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+
+
+
+```{r graficos dispercion de volumen popular, echo=FALSE}
+ggplot(most_popular, aes(x=loudness, y=popularity, color=energy)) +
+  geom_point() +
+  labs(title = "Dispersión de los más populares",
+       x = "Volumen",
+       y = "Popularidad",
+       color = "Energía") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r graficos dispercion de no volumen popular, echo=FALSE}
+ggplot(most_popular, aes(x=energy, y=popularity, color=loudness)) +
+  geom_point() +
+  labs(title = "Dispersión de los más populares",
+       x = "Energía",
+       y = "popularidad",
+       color = "Volumen") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+El siguiente gráfico de disperción tiene una particularidad en donde muchos valores de popularidad tienden a ser 0
+```{r graficos dispercion de volumen no popular, echo=FALSE}
+ggplot(popularidad_baja, aes(x=energy, y=popularity, color=loudness)) +
+  geom_point() +
+  labs(title = "Dispersión de los menos populares",
+       x = "Energía",
+       y = "Popularidad",
+       color = "Volumen") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+El siguiente gráfico de disperción tiene una particularidad en donde muchos valores de popularidad tienden a ser 0
+```{r graficos dispercion de energia, echo=FALSE}
+ggplot(popularidad_baja, aes(x=loudness, y=popularity, color=energy)) +
+  geom_point() +
+  labs(title = "Dispersión de los menos populares",
+       x = "Volumen",
+       y = "Popularidad",
+       color = "Energía") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
