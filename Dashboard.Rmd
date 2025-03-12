@@ -1,0 +1,95 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+#Librerias
+library(tidyverse)
+library(knitr)
+library(dplyr)
+library(readr)
+library(corrplot)
+library(ggplot2)
+```
+
+```{r LECTURA_CSV, include=FALSE}
+spotify <- read_csv("Spotify G4-G7.csv")
+str(spotify)
+```
+
+```{r df_generos,include=FALSE}
+#en este apartado estan los data frame que usaremos para el trabajo
+most_popular <- spotify[spotify$track_genre == "pop-film" | spotify$track_genre == "k-pop",]
+
+popularidad_baja <- spotify[spotify$track_genre == "iranian" | spotify$track_genre == "romance",]
+
+```
+
+```{r seleccion_generos_populares, include=FALSE}
+popularidad_genero <- spotify %>%
+  group_by(track_genre) %>%
+  summarise(media_popularidad = mean(popularity, na.rm = TRUE)) %>%
+  arrange(desc(media_popularidad))
+```
+
+```{r maX_min_popularidad, include=FALSE}
+
+mas_populares <- popularidad_genero %>%slice(1:2) %>%summarise(Genero=track_genre,"Promedio de popularidad"=media_popularidad)
+
+menos_populares <-slice(popularidad_genero,113:114)%>%summarise(Genero=track_genre,"Promedio de popularidad"=media_popularidad)
+```
+
+Analisis Grafico
+======================================================================
+
+Column {data-width=600}
+-----------------------------------------------------------------------
+
+### 
+
+```{r}
+generos_seleccionados <- bind_rows(
+  mas_populares %>% mutate(Tipo = "Más Populares"),
+  menos_populares %>% mutate(Tipo = "Menos Populares")
+)
+
+ggplot(generos_seleccionados, aes(x = Genero, y = `Promedio de popularidad`, fill = Tipo)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Popularidad de los Géneros Musicales en Spotify",
+       x = "Género Musical",
+       y = "Promedio de Popularidad") +
+  theme_minimal()
+```
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### 
+
+```{r}
+ggplot(most_popular, aes(x=energy, y=loudness, color=popularity)) +
+  geom_point() +
+  labs(title = "Dispersión de los más populares",
+       x = "Energía",
+       y = "Volumen",
+       color = "Popularidad") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+### 
+
+```{r}
+ggplot(popularidad_baja, aes(x=energy, y=loudness, color=popularity)) +
+  geom_point() +
+  labs(title = "Dispersión de los menos populares",
+       x = "Energía",
+       y = "Volumen",
+       color = "Popularidad") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
