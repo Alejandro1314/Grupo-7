@@ -9,10 +9,7 @@ output:
   word_document: default
 ---
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 ```{r setup, include=FALSE}
 #Librerias
 library(tidyverse)
@@ -47,7 +44,7 @@ En esta era digital, las plataformas de transmisión de música como Spotify han
 
 Mientras que algunos géneros atraen a una gran audiencia y generan un volumen significativo de reproducciones, otros géneros son escuchados por un público mucho más reducido.
 
-Esta discrepancia en la popularidad de los géneros musicales plantea una serie de preguntas importantes para artistas, productores y sellos discográficos: ¿Qué características distintivas poseen los géneros musicales más populares en comparación con los menos populares en Spotify? ¿Existen patrones o tendencias que puedan ser identificados y replicados para aumentar la popularidad de géneros menos conocidos? ¿Qué factores específicos influyen en la popularidad de un género musical en la plataforma?
+Esta discrepancia en la popularidad de los géneros musicales plantea una serie de preguntas importantes para artistas, productores y sellos discográficos: ¿Cuáles son las principales características que tienen los dos géneros musicales más populares y los dos géneros musicales menos populares de la plataforma digital de música Spotify?, ¿Existen patrones o tendencias que puedan ser identificados y replicados para aumentar la popularidad de géneros menos conocidos? ¿Qué factores específicos influyen en la popularidad de un género musical en la plataforma?
 
 El problema radica en la necesidad de comprender las características que distinguen a los géneros musicales más populares de los menos populares en Spotify. Esta comprensión es esencial no solo para la plataforma y sus usuarios, sino también para la industria musical que busca optimizar sus estrategias de producción y promoción. Al analizar y comparar las características de los géneros más y menos populares, se puede obtener información valiosa que permite replicar el éxito de los géneros populares en otros menos conocidos, fomentando así una mayor diversidad y equidad en el consumo musical.
 
@@ -65,7 +62,6 @@ La investigación ofrece una oportunidad para aplicar técnicas de análisis de 
 
 1.acceso a softwere de manejo de datos
 
-<<<<<<< Updated upstream
 2.acceso a una base de datos de Spotify 
 
 3.la base de datos almacena gran variedad de géneros musicales 
@@ -73,23 +69,11 @@ La investigación ofrece una oportunidad para aplicar técnicas de análisis de 
 4.la base de datos solo tiene canciones
 
 
-=======
-2.acceso a una base de datos de Spotify
-
-3.la base de datos almacena gran variedad de géneros musicales
-
-4.la base de datos solo tiene canciones
-
->>>>>>> Stashed changes
 ***limitaciones***
 
 1.la base de datos corresponde a un lapso de tiempo de octubre del año 2022
 
-<<<<<<< Updated upstream
 2.cada género musical tiene un número limitado de mil canciones 
-=======
-2.cada género musical tiene un número limitado de mil canciones
->>>>>>> Stashed changes
 
 3.Desconocimineto por parte de los investigadores de técnicas complejas de análisis
 
@@ -99,7 +83,6 @@ La investigación ofrece una oportunidad para aplicar técnicas de análisis de 
 
 **Música**
 
-<<<<<<< Updated upstream
  La música es una forma de expresión artística que consiste en la combinación de sonidos vocales o instrumentales, conforme a estándares culturales de ritmo y melodía.
 La música es una de las más antiguas formas de arte y ha estado presente, de diferentes maneras, en prácticamente todas las culturas humanas. Se puede crear con fines estéticos, recreativos, ceremoniales, terapéuticos o de comunicación.
 
@@ -114,17 +97,6 @@ El componente fundamental de la música es el sonido y se transmite a través de
 Requiere de un ejecutor y un compositor
 La música necesita de un intérprete o ejecutor, que emplea un instrumento musical o su propia voz para producir los sonidos. Suele requerir también de un compositor, que es quien concibe la pieza musical que será interpretada. Ambos pueden ser la misma persona.
 Se compone de cuatro parámetros fundamentales
-=======
-La música es una forma de expresión artística que consiste en la combinación de sonidos vocales o instrumentales, conforme a estándares culturales de ritmo y melodía. La música es una de las más antiguas formas de arte y ha estado presente, de diferentes maneras, en prácticamente todas las culturas humanas. Se puede crear con fines estéticos, recreativos, ceremoniales, terapéuticos o de comunicación.
-
-La música se asocia con ciertos aspectos de la mente y se considera un estímulo importante para el pensamiento lógico y matemático, la adquisición del lenguaje, el desarrollo psicomotriz, la creatividad y muchas otras habilidades humanas. Organiza el sonido
-
-La música se caracteriza por organizar los sonidos para producir secuencias estéticamente apreciables y significativas. Si bien todos los sonidos podrían ser “musicales”, en cada cultura hay un rango específico de sonidos que son considerados estrictamente música. Se propaga a través de ondas
-
-El componente fundamental de la música es el sonido y se transmite a través del aire, el agua y otros medios capaces de transportar ondas. Estos medios pueden ser sólidos, líquidos o gaseosos.
-
-Requiere de un ejecutor y un compositor La música necesita de un intérprete o ejecutor, que emplea un instrumento musical o su propia voz para producir los sonidos. Suele requerir también de un compositor, que es quien concibe la pieza musical que será interpretada. Ambos pueden ser la misma persona. Se compone de cuatro parámetros fundamentales
->>>>>>> Stashed changes
 
 Altura. Es la frecuencia de vibración del sonido. Dependiendo de cuántas veces por segundo vibre, el sonido será más grave (bajo), o agudo (alto).
 
@@ -132,33 +104,21 @@ Duración. Es el tiempo en que permanece audible el sonido.
 
 Intensidad. La intensidad es la fuerza con la que se produce un sonido, o la cantidad de energía acústica que contiene. Se mide en dB (decibeles) y tiene relación con el volumen o la presión sonora que perciben nuestros oídos.
 
-<<<<<<< Updated upstream
 Timbre. Es la cualidad del sonido determinada por la forma de las ondas que lo componen. Es lo que permite distinguir un sonido de otro, aunque tenga la misma altura, duración e intensidad.
 Elementos de la música
 
 Los elementos fundamentales de la música pueden variar de una cultura a otra. En la música occidental son melodía, ritmo y armonía.
 Melodía
-=======
-Timbre. Es la cualidad del sonido determinada por la forma de las ondas que lo componen. Es lo que permite distinguir un sonido de otro, aunque tenga la misma altura, duración e intensidad. Elementos de la música
-
-Los elementos fundamentales de la música pueden variar de una cultura a otra. En la música occidental son melodía, ritmo y armonía. Melodía
->>>>>>> Stashed changes
 
 La melodía es el conjunto de sonidos que se ordena de forma sucesiva y que se percibe como una unidad completa de sonido, con identidad y significado propio. Cuando suenan dos o más melodías simultáneas, se habla de contrapunto.
 
 El ritmo es la organización del tiempo en la música a través de la sucesión de sonidos y silencios. Es lo que otorga estructura a una pieza musical. Sus elementos principales son pulso, tempo acento y compás.
 
-<<<<<<< Updated upstream
 La armonía es la combinación simultánea de notas diferentes. Puede ser consonante (si se considera “grata” al oído) o disonante (si suena tensa o áspera). La armonía es el pilar de la música occidental y uno de sus elementos fundamentales son los acordes: conjuntos de tres o 
 Géneros musicales
 
 Los géneros musicales son clasificaciones que distinguen las diversas expresiones según el uso de sus instrumentos, sus tendencias estéticas o su contenido histórico.
 Existe una enorme diversidad de géneros musicales. Entre los más comunes actualmente están el pop, el blues, el rap, el rock y la música electrónica.
-=======
-La armonía es la combinación simultánea de notas diferentes. Puede ser consonante (si se considera “grata” al oído) o disonante (si suena tensa o áspera). La armonía es el pilar de la música occidental y uno de sus elementos fundamentales son los acordes: conjuntos de tres o Géneros musicales
-
-Los géneros musicales son clasificaciones que distinguen las diversas expresiones según el uso de sus instrumentos, sus tendencias estéticas o su contenido histórico. Existe una enorme diversidad de géneros musicales. Entre los más comunes actualmente están el pop, el blues, el rap, el rock y la música electrónica.
->>>>>>> Stashed changes
 
 **Spotify**
 
@@ -168,11 +128,7 @@ La plataforma es muy popular porque combina un extenso catálogo musical con rec
 
 **Las características de audio en las canciones de Spotify**
 
-<<<<<<< Updated upstream
 son valores numéricos que describen las características de una canción. Estas características se calculan utilizando algoritmos de análisis de audio. 
-=======
-son valores numéricos que describen las características de una canción. Estas características se calculan utilizando algoritmos de análisis de audio.
->>>>>>> Stashed changes
 
 **popularidad**
 
@@ -236,20 +192,12 @@ Los algoritmos de recomendación pretenden sugerir a los usuarios canciones que 
 
 **La puntuación de popularidad**
 
-<<<<<<< Updated upstream
 El algoritmo de Spotify analiza el índice de popularidad. Se trata de una puntuación de 0 a 100 que mide la popularidad de un artista en relación a otros de la plataforma. Cuanto más alta sea, más será recomendado por listas el artista. Cada canción tiene también su propia puntuación que influye en su popularidad. El estudio concluye que el principal reto reside en la capacidad de generar un gran volumen de oyentes y streams en un plazo determinado.
 El número de reproducciones en los últimos 28 días. Representa aproximadamente el 80% de la influencia de la recomendación
 
 **Variables**
 
 Género musical: como categoría que agrupa distintas piezas musicales basadas en características comunes, se tomaran en cuenta las dos que tengan mayor media de popularidad y las dos que tengan menor media de popularidad 
-=======
-El algoritmo de Spotify analiza el índice de popularidad. Se trata de una puntuación de 0 a 100 que mide la popularidad de un artista en relación a otros de la plataforma. Cuanto más alta sea, más será recomendado por listas el artista. Cada canción tiene también su propia puntuación que influye en su popularidad. El estudio concluye que el principal reto reside en la capacidad de generar un gran volumen de oyentes y streams en un plazo determinado. El número de reproducciones en los últimos 28 días. Representa aproximadamente el 80% de la influencia de la recomendación
-
-**Variables**
-
-Género musical: como categoría que agrupa distintas piezas musicales basadas en características comunes, se tomaran en cuenta las dos que tengan mayor media de popularidad y las dos que tengan menor media de popularidad
->>>>>>> Stashed changes
 
 Popularidad: Medida de cuántas personas escuchan y disfrutan de un género musical determinado, en relación a la variable anterior la popularidad es el factor que selecciona los géneros musicales para el estudio
 
@@ -257,12 +205,8 @@ Volumen: Nivel de sonido percibido en una grabación o interpretación musical. 
 
 Energía: Sensación de intensidad y dinamismo en una pieza musical. Los géneros pueden variar desde muy energéticos, hasta más tranquilos,fue seleccionado por la magnitud se su relación lineal con la popularidad
 
-<<<<<<< Updated upstream
 Explicitud: Grado en que las letras de las canciones contienen lenguaje, temas o imágenes explícitas que pueden no ser apropiadas para todas las audiencias.su seleccion se usará como medio de comparación entro los dos géneros musicales más populares y los dos géneros musicales menos populares 
 
-=======
-Explicitud: Grado en que las letras de las canciones contienen lenguaje, temas o imágenes explícitas que pueden no ser apropiadas para todas las audiencias.su seleccion se usará como medio de comparación entro los dos géneros musicales más populares y los dos géneros musicales menos populares
->>>>>>> Stashed changes
 
 # Análisis Exploratorio de los datos
 
@@ -270,12 +214,8 @@ En primera instancia se tiene que determinar cuales son los dos géneros mas pop
 
 Los dos géneros musicales con las medias de popularidad más alta son el pop-film y el k-pop, que son géneros que se caracterizan por tener melodías atractivas y memorables, Uso de Instrumentación Variada, Ritmos y Beats Enérgicos
 
-<<<<<<< Updated upstream
 Y en contraparte los dos géneros musicales menos populares son el romance y el iranian, géneros que no guardan mucha relación entre ellos más allá de su bajo promedio de popularidad, por un lado el romance, Las composiciones suelen tener melodías suaves y fluidas que refuerzan el carácter sentimental de las canciones, y la música de origen iraní En la actualidad, muchos artistas iraníes combinan elementos tradicionales con géneros modernos o elementos experimentales 
 
-=======
-Y en contraparte los dos géneros musicales menos populares son el romance y el iranian, géneros que no guardan mucha relación entre ellos más allá de su bajo promedio de popularidad, por un lado el romance, Las composiciones suelen tener melodías suaves y fluidas que refuerzan el carácter sentimental de las canciones, y la música de origen iraní En la actualidad, muchos artistas iraníes combinan elementos tradicionales con géneros modernos o elementos experimentales
->>>>>>> Stashed changes
 
 ```{r seleccion_generos_populares, include=FALSE}
 popularidad_genero <- spotify %>%
@@ -291,20 +231,14 @@ mas_populares <- popularidad_genero %>%slice(1:2) %>%summarise(Genero=track_genr
 menos_populares <-slice(popularidad_genero,114:113)%>%summarise(Genero=track_genre,"Promedio de popularidad"=media_popularidad)
 ```
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 ```{r mostrar_tablas, echo=FALSE}
 
 kable(mas_populares, caption = "Géneros más populares")
 kable(menos_populares, caption = "Géneros menos populares")
 ```
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 ```{r grafico_popularidad, echo=FALSE}
 # Unir las tablas de géneros más y menos populares
 generos_seleccionados <- bind_rows(
@@ -321,10 +255,7 @@ ggplot(generos_seleccionados, aes(x = Genero, y = `Promedio de popularidad`, fil
   theme_minimal()
 ```
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 ```{r df_generos,include=FALSE}
 #en este apartado estan los data frame que usaremos para el trabajo
 most_popular <- spotify[spotify$track_genre == "pop-film" | spotify$track_genre == "k-pop",]
@@ -346,10 +277,6 @@ pop_tempo <- cor(most_popular$popularity, most_popular$tempo)
 pop_time_signature <- cor(most_popular$popularity, most_popular$time_signature)
                 
 ```
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 ```{r correlacion_min_popularidad,include=FALSE}
 poop_dura <- cor(popularidad_baja$popularity, popularidad_baja$duration_ms)
 poop_dance <- cor(popularidad_baja$popularity, popularidad_baja$danceability)
@@ -362,10 +289,6 @@ poop_valence <- cor(popularidad_baja$popularity, popularidad_baja$valence)
 poop_tempo <- cor(popularidad_baja$popularity, popularidad_baja$tempo)
 poop_time_signature <- cor(popularidad_baja$popularity, popularidad_baja$time_signature)
 ```
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 Para la selección de las variables se aplicó la relación lineal de la popularidad con cada una de las otras variables y los resultados más resaltantes se seleccionaron para estudiarse como variables del proyecto
 
 ```{r ,echo=FALSE}
@@ -394,19 +317,11 @@ rownames(descripcion_menos) <- c("1", "2", "3")
 
 
 ```
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 **Análisi descriptivo**
 
 En el siguiente cuadro, se muestran las estadísticas descriptivas para las variables en estudio, correspondientes a los géneros musicales más populares de la plataforma de Spotify.
 
-<<<<<<< Updated upstream
 - 
-=======
--   
->>>>>>> Stashed changes
 
 ```{r tabla estadisticas descriptivas generos mas populares, echo=FALSE}
 kable(descripcion_mas, caption = "Estadisticas descriptivas de los géneros musicales más populares")
@@ -414,11 +329,7 @@ kable(descripcion_mas, caption = "Estadisticas descriptivas de los géneros musi
 
 En el siguiente cuadro, se muestran las estadísticas descriptivas para las variables en estudio, correspondientes a los dos géneros musicales menos populares de la plataforma de Spotify.
 
-<<<<<<< Updated upstream
 - 
-=======
--   
->>>>>>> Stashed changes
 
 ```{r tabla estadisticas descriptivas generos menos populares, echo=FALSE}
 kable(descripcion_menos, caption = "Estadisticas descriptivas de los géneros musicales menos populares")
@@ -426,11 +337,6 @@ kable(descripcion_menos, caption = "Estadisticas descriptivas de los géneros mu
 
 El siguiente grafico de sectores
 
-<<<<<<< Updated upstream
-=======
-A nivel de proporcion los temas con letras explicitas tienen una representacion minima en los dos grupos en general obteniendo solo un porcentaje de 3,3% de canciones explicitas de los dos grupos del estudio,siendo la explicitud de los temas una variable no muy relevante.
-
->>>>>>> Stashed changes
 ```{r grafico sectores, echo=FALSE}
 generos_seleccionados <- bind_rows(
   most_popular %>% mutate(Tipo = "Más Popular"),
@@ -464,12 +370,8 @@ ggplot(data_explicit_selected, aes(x = "", y = percentage, fill = as.factor(expl
             position = position_stack(vjust = 0.5))
 ```
 
-<<<<<<< Updated upstream
 #Análisis Bivariante (correlación)
 
-=======
-# Análisis Bivariante (correlación)
->>>>>>> Stashed changes
 
 ```{r graficos dispercion mas populares, echo=FALSE}
 ggplot(most_popular, aes(x=energy, y=loudness, color=popularity)) +
@@ -482,10 +384,7 @@ ggplot(most_popular, aes(x=energy, y=loudness, color=popularity)) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 ```{r graficos dispercion menos populares, echo=FALSE}
 ggplot(popularidad_baja, aes(x=energy, y=loudness, color=popularity)) +
   geom_point() +
@@ -497,12 +396,9 @@ ggplot(popularidad_baja, aes(x=energy, y=loudness, color=popularity)) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-<<<<<<< Updated upstream
 
 
 
-=======
->>>>>>> Stashed changes
 ```{r graficos dispercion de volumen popular, echo=FALSE}
 ggplot(most_popular, aes(x=loudness, y=popularity, color=energy)) +
   geom_point() +
@@ -526,10 +422,6 @@ ggplot(most_popular, aes(x=energy, y=popularity, color=loudness)) +
 ```
 
 El siguiente gráfico de disperción tiene una particularidad en donde muchos valores de popularidad tienden a ser 0
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 ```{r graficos dispercion de volumen no popular, echo=FALSE}
 ggplot(popularidad_baja, aes(x=energy, y=popularity, color=loudness)) +
   geom_point() +
@@ -542,10 +434,6 @@ ggplot(popularidad_baja, aes(x=energy, y=popularity, color=loudness)) +
 ```
 
 El siguiente gráfico de disperción tiene una particularidad en donde muchos valores de popularidad tienden a ser 0
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 ```{r graficos dispercion de energia, echo=FALSE}
 ggplot(popularidad_baja, aes(x=loudness, y=popularity, color=energy)) +
   geom_point() +
@@ -557,14 +445,8 @@ ggplot(popularidad_baja, aes(x=loudness, y=popularity, color=energy)) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-<<<<<<< Updated upstream
 # Análisis y Resultados 
-
-Como parte del análisis de las características más importantes de los géneros musicales mas y menos populares se tiene que saber cuales son esas características más importantes relacionando esa variable de popularidad que divide ambos grupos con las demás variables, siendo las variables que generaron mayor relación lineal con la popularidad la energía y el volumen, para las dos variables, el resultado para ambos grupos es bajas, a pesar de ser las mas altas entre las demás. Para el caso de los géneros musicales mas populares era una relación lineal positiva para ambas variables, la interpretación es, mientras más popular el tema musical se poesía mayor volumen y energía y viceversa, para los temas pertenecientes a los géneros musicales menos populares la relación línea es negativa lo que significa que los temas pertenecientes a estos géneros su popularidad es alta mientras su energía y volumen es más bajo.
-=======
-# Análisis y Resultados
 
 El primer resultado obtenido en la investigación es la de los géneros musicales con la media de popularidad más alta y más baja, siendo los géneros más populares dentro de la plataforma de Spotify correspondientes a septiembre del año 2022 el pop-film y el k-pop y en contraparte los géneros musicales con menor media de popularidad son el iranian (canciones de origen iraní) y las romanticas,asi formándose dos grupos, los géneros musicales más populares y los géneros musicales menos populares
 
 Como parte del análisis de las características más importantes de los géneros musicales mas y menos populares se tiene que saber cuales son esas características más importantes relacionando esa variable de popularidad que divide ambos grupos con las demás variables, siendo las variables que generaron mayor relación lineal con la popularidad la energía y el volumen, para las dos variables, el resultado para ambos grupos es bajas, a pesar de ser las mas altas entre las demás. Para el caso de los géneros musicales mas populares era una relación lineal positiva para ambas variables, la interpretación es, mientras más popular el tema musical se poesía mayor volumen y energía y viceversa, para los temas pertenecientes a los géneros musicales menos populares la relación línea es negativa lo que significa que los temas pertenecientes a estos géneros su popularidad es alta mientras su energía y volumen es más bajo.
->>>>>>> Stashed changes
