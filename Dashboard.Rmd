@@ -14,6 +14,8 @@ library(dplyr)
 library(readr)
 library(corrplot)
 library(ggplot2)
+library(funModeling)
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r LECTURA_CSV, include=FALSE}
@@ -43,6 +45,25 @@ mas_populares <- popularidad_genero %>%slice(1:2) %>%summarise(Genero=track_genr
 menos_populares <-slice(popularidad_genero,113:114)%>%summarise(Genero=track_genre,"Promedio de popularidad"=media_popularidad)
 ```
 
+```{r mostrar_tablas, include=FALSE}
+kable(mas_populares, caption = "Géneros más populares")
+kable(menos_populares, caption = "Géneros menos populares")
+```
+
+```{r estadisticas descriptivas genros mas populares, include=FALSE}
+descripcion_mas <- profiling_num(most_popular)
+descripcion_mas <- descripcion_mas %>% select(variable, mean, std_dev,skewness, kurtosis)
+descripcion_mas <- descripcion_mas %>% rename(Variable = variable, Promedio = mean,D.Estandar = std_dev, "Coeficiente de asimetria" = skewness,Kurtosis = kurtosis,)
+descripcion_mas <- descripcion_mas[c(2,6,8),]
+rownames(descripcion_mas) <- c("1", "2", "3")
+
+descripcion_menos <- profiling_num(popularidad_baja)
+descripcion_menos <- descripcion_menos %>% select(variable, mean, std_dev,skewness, kurtosis)
+descripcion_menos <- descripcion_menos %>% rename(Variable = variable, Promedio = mean,D.Estandar = std_dev, "Coeficiente de asimetria" = skewness,Kurtosis = kurtosis,)
+descripcion_menos <- descripcion_menos[c(2,6,8),]
+rownames(descripcion_menos) <- c("1", "2", "3")
+```
+
 Analisis Grafico
 ======================================================================
 
@@ -51,7 +72,7 @@ Column {data-width=600}
 
 ### 
 
-```{r}
+```{r, echo=FALSE}
 generos_seleccionados <- bind_rows(
   mas_populares %>% mutate(Tipo = "Más Populares"),
   menos_populares %>% mutate(Tipo = "Menos Populares")
@@ -70,7 +91,7 @@ Column {data-width=400}
 
 ### 
 
-```{r}
+```{r, echo=FALSE}
 ggplot(most_popular, aes(x=energy, y=loudness, color=popularity)) +
   geom_point() +
   labs(title = "Dispersión de los más populares",
@@ -83,7 +104,7 @@ ggplot(most_popular, aes(x=energy, y=loudness, color=popularity)) +
 
 ### 
 
-```{r}
+```{r, echo=FALSE}
 ggplot(popularidad_baja, aes(x=energy, y=loudness, color=popularity)) +
   geom_point() +
   labs(title = "Dispersión de los menos populares",
@@ -93,3 +114,23 @@ ggplot(popularidad_baja, aes(x=energy, y=loudness, color=popularity)) +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5))
 ```
+
+
+Tablas de estadísticas descriptivas {data-orientation=column}
+======================================================================
+
+column {data-height=600}
+-------------------------------------
+
+### Estadisticas descriptivas de los géneros musicales más populares
+
+```{r tabla estadisticas descriptivas generos mas populares, echo=FALSE}
+kable(descripcion_mas, caption = "")
+```
+
+### Estadisticas descriptivas de los géneros musicales menos populares
+
+```{r tabla estadisticas descriptivas generos menos populares, echo=FALSE}
+kable(descripcion_menos, caption = "")
+```
+
