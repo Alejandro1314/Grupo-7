@@ -169,6 +169,7 @@ kable(descripcion_mas, caption = "")
 kable(descripcion_menos, caption = "")
 ```
 
+<<<<<<< HEAD
 Gráficos de dispersión de popularidad con volumen y energía de los generos más populares {data-orientation=column}
 ======================================================================
 
@@ -203,3 +204,5 @@ ggplot(most_popular, aes(x=loudness, y=popularity, color=energy)) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
+=======
+>>>>>>> ea81593f4465d0cb774ab217f284094e00227353
