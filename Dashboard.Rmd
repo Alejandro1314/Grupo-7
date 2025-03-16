@@ -67,7 +67,7 @@ rownames(descripcion_menos) <- c("1", "2", "3")
 Analisis Grafico
 ======================================================================
 
-Column {data-width=600}
+Column {data-width=400}
 -----------------------------------------------------------------------
 
 ### 
@@ -84,6 +84,41 @@ ggplot(generos_seleccionados, aes(x = Genero, y = `Promedio de popularidad`, fil
        x = "Género Musical",
        y = "Promedio de Popularidad") +
   theme_minimal()
+```
+
+###
+
+```{r grafico sectores, echo=FALSE}
+generos_seleccionados <- bind_rows(
+  most_popular %>% mutate(Tipo = "Más Popular"),
+  popularidad_baja %>% mutate(Tipo = "Menos Popular")
+)
+
+data_explicit_selected <- generos_seleccionados %>%
+  group_by(Tipo, explicit) %>%
+  summarise(count = n(), .groups = "drop") %>%
+  mutate(percentage = count / sum(count) * 100)
+
+ggplot(data_explicit_selected, aes(x = "", y = percentage, fill = as.factor(explicit))) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y") +
+  facet_wrap(~ Tipo) +
+  labs(title = "¿Qué tan explícitas son?",
+       fill = "Explícito",
+       y = "",
+       x = "") +
+  theme_minimal() +
+  scale_fill_manual(values = c("#6DB1F7", "#6DF7B6"), labels = c("No Explícita", "Explícita")) +
+  theme(
+    axis.text.x = element_blank(),
+    plot.title = element_text(hjust = 0.5),
+    panel.border = element_blank(),
+    panel.grid = element_blank(),
+    panel.background = element_blank(),
+    plot.background = element_blank()
+  ) +
+  geom_text(aes(label = paste0(round(percentage, 1), "%")), 
+            position = position_stack(vjust = 0.5))
 ```
 
 Column {data-width=400}
